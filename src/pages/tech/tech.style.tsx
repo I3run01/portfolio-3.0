@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-export const HomeMain = styled.main`
+export const TechMain = styled.main`
 
     height: 100vh;
-    width: auto;
-
     
 `
     

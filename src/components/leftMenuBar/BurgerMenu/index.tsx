@@ -2,32 +2,36 @@ import { useState } from "react"
 import { BurguerMenuStyled } from "./burguerMenu.style"
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/redux/store'
-
-
+import { Colors } from 'src/styles/globalVariables.style'
 
 type Props = {
-    fction: () => void
+    fction: () => void,
+    isMenuClosed: boolean
 }
 
-export const BurguerMenu = ({fction}:Props) => {
-    const [openMenu, setOpenMenu] = useState<string>('menuOpened')
+export const BurguerMenu = ({fction, isMenuClosed }:Props) => {
+    const [isMenuOpenOrClosed, setIsMenuOpenOrClosed] = useState<string>(
+        isMenuClosed ? 'menuClosed' : 'menuOpened'
+    )
     const isDark = useSelector((state: RootState) => state.theme.isDark)
 
     const ChangeMenu = () => {
-        if(openMenu == 'menuClosed') setOpenMenu('menuOpened')
-        else setOpenMenu('menuClosed')
+        if(isMenuOpenOrClosed == 'menuClosed') setIsMenuOpenOrClosed('menuOpened')
+        else setIsMenuOpenOrClosed('menuClosed')
 
         fction()
     }
 
     return (
         <BurguerMenuStyled 
+            $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}
+            $themeColor={Colors.themeColor01}
             onClick={ChangeMenu}
-            isDark={isDark}
-            id='burguerMenu'>
-            <div className={`line01 line01${openMenu}`}/>
-            <div className={`line02 line02${openMenu}`}/>
-            <div className={`line03 line03${openMenu}`}/>
+            id='burguerMenu'
+            data-testid="burguer-menu-button">
+            <div className={`line01 line01${isMenuOpenOrClosed}`}/>
+            <div className={`line02 line02${isMenuOpenOrClosed}`}/>
+            <div className={`line03 line03${isMenuOpenOrClosed}`}/>
         </BurguerMenuStyled>
     )
 }

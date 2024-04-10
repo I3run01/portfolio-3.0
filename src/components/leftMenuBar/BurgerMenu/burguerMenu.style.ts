@@ -1,32 +1,45 @@
 import styled from "styled-components";
-import { FontColor } from 'src/utils/styles/global.variables'
 
-type Props ={
-    isDark: boolean
+interface Props {
+    $fontColor: string;
+    $themeColor: string
 }
 
+
 export const BurguerMenuStyled = styled.div<Props>`
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    margin-left: 0px;
+
+    padding: 4px;
     
-    margin-top: 5px;
-    margin-left: 5px;
-    padding: 5px;
     height: 60px;
     width: 60px;
-
+    
+    transform: scale(60%);
+    
+    transform-origin: top left;
+    
     cursor: pointer;
-
+    
+    &:hover > .line01, &:hover >  .line02, &:hover > .line03 {
+        background-color: ${props => props.$themeColor};
+    }
+    
     .line01, .line02, .line03 {
+
         height: 4px;
         transition: all 0.5s ease-in-out;
         
-        border: 1px solid ${props => props.isDark ? FontColor.darkFontColor : FontColor.lightFontColor};
+        border: 1px solid ${props => props.$fontColor};
 
         border-radius: 5px;
 
-        background-color: ${props => props.isDark ? FontColor.darkFontColor : FontColor.lightFontColor};
+        background-color: ${props => props.$fontColor};
+
     }
     
     .line01, .line03 {
@@ -64,5 +77,6 @@ export const BurguerMenuStyled = styled.div<Props>`
     .line02menuOpened {
         translate: -40px;
         opacity: 0;
+       
     }
 `
