@@ -1,18 +1,23 @@
 import '@testing-library/jest-dom';
 import LeftMenuBar from ".";
 import { renderWithProviders } from 'src/test/utils/renderWithProviders.tsx';
-import { fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent, render, screen, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import {BrowserRouter} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import {store} from 'src/redux/store'
 
 let leftMenuBar: any;
-
-beforeEach(() => {
-  const leftMenuBarRender = renderWithProviders(<LeftMenuBar />);
-
-  leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
-});
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'en', changeLanguage: jest.fn() } })
+}));
 
 describe('test the styles', () => {
+  beforeEach(() => {
+    const leftMenuBarRender = renderWithProviders(<LeftMenuBar />);
+  
+    leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
+  });
 
   it('left menu width should be 200px in the beggining', () => {
     expect(leftMenuBar).toHaveStyle('width: 200px');
@@ -37,7 +42,7 @@ describe('test the styles', () => {
   });
 
   it('should change theme when clicked', async () => {
-    
+   
     const themeButton = leftMenuBar.querySelector('.ThemeButton')
     
     const initialColor = themeButton.style.color;
@@ -53,36 +58,62 @@ describe('test the styles', () => {
 });
 
 describe('test the routes', () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store} >
+        <LeftMenuBar />
+      </Provider>, 
+      {wrapper: BrowserRouter}
+    )
+  });
 
-  it('should go from home to tech page', () => {
-    const history = createMemoryHistory({ initialEntries: ['/'] });
+  it('should go from home to tech page', async () => {
+    const user = userEvent.setup()
+    const dashboardButton = leftMenuBar.querySelector('.dashboardButton')
 
-    fireEvent.click(leftMenuBar.querySelector('.techButton'));
+    expect(screen.getByText(/home/i)).toBeInTheDocument()
 
-    setTimeout(() => {
-      expect(history.location.pathname).toBe('/tech');
-    }, 1000);
+    await user.click(dashboardButton)
+
+    expect(screen.getByText(/tech/i)).toBeInTheDocument()
   })
 
-  it('should go from tech to home page', () => {
-    const history = createMemoryHistory({ initialEntries: ['/tech'] });
+  it('should go from tech to home page', async () => {
+    const user = userEvent.setup()
+    const dashboardButton = leftMenuBar.querySelector('.dashboardButton')
 
-    fireEvent.click(leftMenuBar.querySelector('.homeButton'));
+    expect(screen.getByText(/tech/i)).toBeInTheDocument()
 
-    setTimeout(() => {
-      expect(history.location.pathname).toBe('/home');
-    }, 1000);
+    await user.click(dashboardButton)
+
+    expect(screen.getByText(/home/i)).toBeInTheDocument()
   })
 
+  it('should go from home to dashboard page', async () => {
+    const user = userEvent.setup()
+    const dashboardButton = leftMenuBar.querySelector('.dashboardButton')
 
-  it('should go from home to dashboard page', () => {
-    const history = createMemoryHistory({ initialEntries: ['/'] });
+    expect(screen.getByText(/home/i)).toBeInTheDocument()
 
-    fireEvent.click(leftMenuBar.querySelector('.dashboardButton'));
+    await user.click(dashboardButton)
 
-    setTimeout(() => {
-      expect(history.location.pathname).toBe('/dashboard');
-    }, 1000);
+    expect(screen.getByText(/dashboard/i)).toBeInTheDocument()
   })
   
+})
+
+describe('test languages changes', () => {
+  it('should change the language ptbr to en, and en to ptbr', async () => {
+    const { getByText } = renderWithProviders(<LeftMenuBar/>)
+    const Text = getByText('Language')
+
+    expect(Text.textContent).toBe('Language');
+
+    await act(async () => {
+      fireEvent.click(Text);
+    });
+    
+    expect(Text.textContent).toBe('Idioma');
+  })
+
 })

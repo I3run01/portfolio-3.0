@@ -20,6 +20,7 @@ const LeftMenuBar = () => {
     const { i18n } = useTranslation();
 
     const handleMenuButton = () => setIsMenuClosed(!isMenuClosed)
+    const changeLanguage = () => i18n.language == 'en' ? i18n.changeLanguage('ptbr')  :  i18n.changeLanguage('en')
 
     return (
         <LeftMenuBarDiv
@@ -49,9 +50,9 @@ const LeftMenuBar = () => {
             </div>
 
             <div className="settings">
-                <div onClick={() => i18n.language == 'en_us' ? i18n.changeLanguage('pt_br')  :  i18n.changeLanguage('en_us')}>
+                <div className="changeLanguage" onClick={changeLanguage}>
                     <SvgIcons.LanguageIcon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
+                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor} className="changeLangText">
                         {t('Language')}
                     </Fonts.DesktopParagraph>
                 </div>
