@@ -26,13 +26,9 @@ export const GlobalStyle = styled.div<props>`
     
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    bottom: 0;
 
     background: linear-gradient(-45deg, 
         ${props => props.$animationBgColors.color01}, 
@@ -43,4 +39,18 @@ export const GlobalStyle = styled.div<props>`
 
     background-size: 400% 400%;
     animation: ${Gradient} 15s ease infinite;    
+`
+
+export const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 100%;
+
+    @media screen and (max-width: 800px) {
+        height: calc(100% - 40px);
+    }
+
+
 `

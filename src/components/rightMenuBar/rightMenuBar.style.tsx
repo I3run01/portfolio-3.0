@@ -37,5 +37,12 @@ export const RightMenuBarDiv = styled.div<props>`
             color: ${props => props.$fontColor};
         }
     }
+
+    @media screen and (max-width: 800px) {
+        display: none;
+        width: 0px;
+        position: fixed;
+        right: 0;
+    }
     
     `
