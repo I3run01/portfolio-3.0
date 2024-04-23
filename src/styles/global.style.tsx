@@ -30,6 +30,8 @@ export const GlobalStyle = styled.div<props>`
     right: 0;
 
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     background: linear-gradient(-45deg, 
         ${props => props.$animationBgColors.color01}, 
@@ -37,6 +39,7 @@ export const GlobalStyle = styled.div<props>`
         ${props => props.$animationBgColors.color03}, 
         ${props => props.$animationBgColors.color04}
     );
+
     background-size: 400% 400%;
     animation: ${Gradient} 15s ease infinite;
 `
