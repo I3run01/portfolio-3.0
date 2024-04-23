@@ -1,12 +1,12 @@
-import { DashboardMain } from './dashboard.style'
+import { Main } from "src/components/main"
 
 
 const Dashboard = () => {
 
     return (
-        <DashboardMain>
+        <Main>
             <h1>Dashboard</h1>
-        </DashboardMain>
+        </Main>
     )
 }
 

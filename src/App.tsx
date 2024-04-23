@@ -27,7 +27,7 @@ function App() {
   return (
     <GlobalStyle $bgColor={isDark ? Colors.darkBgColor01 : Colors.lightBgColor01}
     $animationBgColors={isDark ? animationBgColorsDark : animationBgColorsLight}
-    >
+    > 
       <LeftMenuBar/>
       <MainRoutes/>
       <RightMenuBar/>

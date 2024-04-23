@@ -23,6 +23,7 @@ const Gradient = keyframes`
 `;
 
 export const GlobalStyle = styled.div<props>`
+    
     position: absolute;
     top: 0;
     bottom: 0;
@@ -41,5 +42,5 @@ export const GlobalStyle = styled.div<props>`
     );
 
     background-size: 400% 400%;
-    animation: ${Gradient} 15s ease infinite;
+    animation: ${Gradient} 15s ease infinite;    
 `

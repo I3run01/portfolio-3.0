@@ -1,12 +1,12 @@
-import { HomeMain } from './home.style'
+import { Main } from "src/components/main"
 
 
 const Home = () => {
 
     return (
-        <HomeMain>
+        <Main>
             <h1>Home</h1>
-        </HomeMain>
+        </Main>
     )
 }
 

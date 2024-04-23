@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const DashboardMain = styled.main`
-
+export const MainLayout = styled.main`
     height: 100vh;
-    
 `
-    
-
-    

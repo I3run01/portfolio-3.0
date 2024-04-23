@@ -19,7 +19,7 @@ export const LeftMenuBarDiv = styled.div<props>`
     
     transition: all 0.5s ease-in-out;
 
-    height: 100vh;
+    height: 100%;
     width: ${props => props.$leftMenuWidth};
 
     overflow: hidden;
@@ -55,6 +55,5 @@ export const LeftMenuBarDiv = styled.div<props>`
 
         
     }
-
 
 `

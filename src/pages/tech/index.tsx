@@ -1,12 +1,11 @@
-import { TechMain } from './tech.style'
-
+import { Main } from "src/components/main"
 
 const Tech = () => {
 
     return (
-        <TechMain>
+        <Main>
             <h1>Tech</h1>
-        </TechMain>
+        </Main>
     )
 }
 

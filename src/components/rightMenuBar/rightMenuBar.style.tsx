@@ -7,7 +7,7 @@ type props = {
 
 export const RightMenuBarDiv = styled.div<props>`
 
-    height: 100vh;
+    height: 100%;
     width: 60px;
 
     background: rgba(98, 99, 211, 0.14);
@@ -36,5 +36,6 @@ export const RightMenuBarDiv = styled.div<props>`
             width: 30px;
             color: ${props => props.$fontColor};
         }
-    }   
+    }
+    
     `
