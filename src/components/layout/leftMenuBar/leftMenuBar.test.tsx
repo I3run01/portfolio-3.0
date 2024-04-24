@@ -27,8 +27,8 @@ describe('test the styles', () => {
     changeThemeButton = leftMenuBarRender.getByTestId('change-menu-button');
   });
 
-  it('left menu width should be 200px in the beggining', () => {
-    expect(leftMenuBar).toHaveStyle('width: 200px');
+  it('left menu width should be 50px in the beggining', () => {
+    expect(leftMenuBar).toHaveStyle('width: 50px');
   });
 
   
@@ -41,13 +41,13 @@ describe('test the styles', () => {
     expect(leftMenuBarChildWidth).toBe(leftMenuBarWidth)
   });
 
-  it('left menu width should be 50px after the first click', async () => {
+  it('left menu width should be 200px after the first click', async () => {
     
     await act( async () => {
       fireEvent.click(BurguerMenuButton)
     })
 
-    expect(leftMenuBar).toHaveStyle('width: 50px');
+    expect(leftMenuBar).toHaveStyle('width: 200px');
   });
 
   it('should change theme when clicked', async () => {

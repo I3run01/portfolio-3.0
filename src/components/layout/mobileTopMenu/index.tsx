@@ -18,8 +18,8 @@ export const MobileTopMenu = ({burguerFunction, homeFunction, shareFunction, isM
     return (
         <MobileTopMenuDiv $svgColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}>
             <BurguerMenu fction={burguerFunction} isMenuClosed={isMenuClosed}/>
-            <div className="icons" onClick={homeFunction}><SvgIcons.HomeIcon /></div>
-            <div className="icons" onClick={shareFunction}><SvgIcons.ShareIcon /></div>           
+            <div className="icons" onClick={homeFunction} data-testid='home-menu-button'><SvgIcons.HomeIcon /></div>
+            <div className="icons" onClick={shareFunction} data-testid='share-menu-button'><SvgIcons.ShareIcon /></div>           
         </MobileTopMenuDiv>
     )
 }

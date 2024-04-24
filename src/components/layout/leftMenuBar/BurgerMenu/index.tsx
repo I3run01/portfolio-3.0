@@ -26,7 +26,7 @@ export const BurguerMenu = ({fction, isMenuClosed }:Props) => {
     useEffect(() => {
         setIsMenuOpenOrClosed(isMenuClosed ? 'menuClosed' : 'menuOpened')
     }, [isMenuClosed])
-
+''
     return (
         <BurguerMenuStyled 
             $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}

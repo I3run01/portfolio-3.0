@@ -36,7 +36,8 @@ const RightMenuBar = ({isRightMenuClosedInMobile}: props) => {
     return (
         <RightMenuBarDiv 
         $fontColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}
-        $width={rightMenuWidth}>
+        $width={rightMenuWidth}
+        data-testid='right-menu-bar'>
             <Link to={'https://api.whatsapp.com/send?phone=5541995686185'} target="_blank"  className="icons" data-testid='whatsapp-button'>
                 <SvgIcons.WhatsAppIcon/>
             </Link>
