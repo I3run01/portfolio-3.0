@@ -28,7 +28,7 @@ export const MobileTopMenuDiv = styled.div<props>`
 
         svg {
             color: ${props => props.$svgColor};
-            height: 80%;
+            height: 70%;
         }
     }
 

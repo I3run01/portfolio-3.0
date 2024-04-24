@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BurguerMenuStyled } from "./burguerMenu.style"
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/redux/store'
@@ -13,6 +13,7 @@ export const BurguerMenu = ({fction, isMenuClosed }:Props) => {
     const [isMenuOpenOrClosed, setIsMenuOpenOrClosed] = useState<string>(
         isMenuClosed ? 'menuClosed' : 'menuOpened'
     )
+    
     const isDark = useSelector((state: RootState) => state.theme.isDark)
 
     const ChangeMenu = () => {
@@ -21,6 +22,10 @@ export const BurguerMenu = ({fction, isMenuClosed }:Props) => {
 
         fction()
     }
+
+    useEffect(() => {
+        setIsMenuOpenOrClosed(isMenuClosed ? 'menuClosed' : 'menuOpened')
+    }, [isMenuClosed])
 
     return (
         <BurguerMenuStyled 

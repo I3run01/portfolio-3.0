@@ -1,5 +1,5 @@
 import { LeftMenuBarDiv } from "./leftMenuBar.style";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BurguerMenu } from './BurgerMenu'
 import { useSelector } from "react-redux";
 import { RootState } from 'src/redux/store'
@@ -11,13 +11,43 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
-const LeftMenuBar = () => {
+type props = {
+    isLeftMenuCloset?: boolean
+}
+
+const LeftMenuBar = ({isLeftMenuCloset}: props) => {
     const isDark = useSelector((state: RootState) => state.theme.isDark)
-    const [isMenuClosed, setIsMenuClosed] = useState<boolean>(false)
+    const [isMenuClosed, setIsMenuClosed] = useState<boolean>(true)
+    const [showsBurguerMenu, setShowsBurguesMenu] = useState<boolean>(true)
+    const [menuClosedWidth, setMenuClosetWidth] = useState<string>('50px')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { t } = useTranslation();
     const { i18n } = useTranslation();
+
+    useEffect(() => {
+        if(isLeftMenuCloset != undefined) setIsMenuClosed(isLeftMenuCloset)
+    }, [isLeftMenuCloset])
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 800) {
+                setShowsBurguesMenu(false);
+                setMenuClosetWidth('0px')
+            } else {
+                setShowsBurguesMenu(true);
+                setMenuClosetWidth('50px')
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handleMenuButton = () => setIsMenuClosed(!isMenuClosed)
     const changeLanguage = () => i18n.language == 'en' ? i18n.changeLanguage('ptbr')  :  i18n.changeLanguage('en')
@@ -25,14 +55,17 @@ const LeftMenuBar = () => {
     return (
         <LeftMenuBarDiv
         data-testid='left-menu-bar'
-        $leftMenuWidth = {isMenuClosed ?  '50px' : '200px'}
+        $leftMenuWidth = {isMenuClosed ?  menuClosedWidth : '200px'}
         $themeColor={Colors.themeColor01}
         $svgDefaultColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}
-        >
-            <BurguerMenu
-                fction={handleMenuButton}
-                isMenuClosed={isMenuClosed}
-            />
+        >   
+
+            {showsBurguerMenu &&
+                <BurguerMenu
+                    fction={handleMenuButton}
+                    isMenuClosed={isMenuClosed}
+                />
+            }
         
             <div className="pages">
                 <div onClick={() => navigate('')}>

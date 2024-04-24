@@ -4,12 +4,39 @@ import { SvgIcons } from "src/assets/svg/svgIcons"
 import { Colors } from "src/styles/globalVariables.style"
 import { RootState } from 'src/redux/store'
 import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 
-const RightMenuBar = () => {
+type props = {
+    isRightMenuClosedInMobile: boolean
+}
+
+const RightMenuBar = ({isRightMenuClosedInMobile}: props) => {
     const isDark = useSelector((state: RootState) => state.theme.isDark)
 
+    const [rightMenuWidth, setRightMenuWidth] = useState('60px')
+
+    useEffect(() => {
+        setRightMenuWidth(isRightMenuClosedInMobile ? '0px' : '60px')
+    }, [isRightMenuClosedInMobile])
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 800) setRightMenuWidth('60px')
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <RightMenuBarDiv $fontColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}>
+        <RightMenuBarDiv 
+        $fontColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}
+        $width={rightMenuWidth}>
             <Link to={'https://api.whatsapp.com/send?phone=5541995686185'} target="_blank"  className="icons" data-testid='whatsapp-button'>
                 <SvgIcons.WhatsAppIcon/>
             </Link>

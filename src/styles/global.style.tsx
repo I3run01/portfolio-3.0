@@ -40,17 +40,3 @@ export const GlobalStyle = styled.div<props>`
     background-size: 400% 400%;
     animation: ${Gradient} 15s ease infinite;    
 `
-
-export const Container = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    height: 100%;
-
-    @media screen and (max-width: 800px) {
-        height: calc(100% - 40px);
-    }
-
-
-`

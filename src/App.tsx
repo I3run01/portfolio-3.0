@@ -1,12 +1,9 @@
 import { GlobalStyle } from "src/styles/global.style"
-import { Container } from "src/styles/global.style"
 import { MainRoutes } from 'src/routes/mainRoutes'
-import LeftMenuBar from "./components/leftMenuBar"
-import RightMenuBar from "./components/rightMenuBar"
 import { Colors } from "./styles/globalVariables.style"
 import { useSelector } from "react-redux"
 import { RootState } from 'src/redux/store'
-import { MobileTopMenu } from "./components/mobileTopMenu"
+import { Layout } from "./components/layout"
  
 function App() {
 
@@ -28,14 +25,10 @@ function App() {
 
   return (
     <GlobalStyle $bgColor={isDark ? Colors.darkBgColor01 : Colors.lightBgColor01}
-    $animationBgColors={isDark ? animationBgColorsDark : animationBgColorsLight}
-    > 
-      <MobileTopMenu/>
-      <Container>
-        <LeftMenuBar/>
+    $animationBgColors={isDark ? animationBgColorsDark : animationBgColorsLight}> 
+      <Layout>
         <MainRoutes/>
-        <RightMenuBar/>
-      </Container>
+      </Layout>
     </GlobalStyle>
   )
 }

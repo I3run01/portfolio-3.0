@@ -11,7 +11,6 @@ export const LeftMenuBarDiv = styled.div<props>`
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.4px);
     -webkit-backdrop-filter: blur(7.4px);
-    border-right: 1px solid rgba(15, 0, 237, 0.3);
 
     display: flex;
     flex-direction: column;
@@ -57,10 +56,10 @@ export const LeftMenuBarDiv = styled.div<props>`
     }
 
     @media screen and (max-width: 800px) {
-        display: none;
-        width: 0px;
         position: fixed;
         left: 0;
+
+        height: calc(100% - 40px);
     }
 
 `
