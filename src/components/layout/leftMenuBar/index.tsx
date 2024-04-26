@@ -12,22 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 type props = {
-    isLeftMenuCloset?: boolean
+    isLeftMenuClosed: boolean
+    handleBurguerMenuFunction: () => void
 }
 
-const LeftMenuBar = ({isLeftMenuCloset}: props) => {
+const LeftMenuBar = ({isLeftMenuClosed, handleBurguerMenuFunction}: props) => {
     const isDark = useSelector((state: RootState) => state.theme.isDark)
-    const [isMenuClosed, setIsMenuClosed] = useState<boolean>(true)
     const [showsBurguerMenu, setShowsBurguesMenu] = useState<boolean>(true)
     const [menuClosedWidth, setMenuClosetWidth] = useState<string>('50px')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { t } = useTranslation();
-    const { i18n } = useTranslation();
-
-    useEffect(() => {
-        if(isLeftMenuCloset != undefined) setIsMenuClosed(isLeftMenuCloset)
-    }, [isLeftMenuCloset])
+    const { i18n } = useTranslation()
 
     useEffect(() => {
         const handleResize = () => {
@@ -49,21 +45,20 @@ const LeftMenuBar = ({isLeftMenuCloset}: props) => {
         };
     }, []);
 
-    const handleMenuButton = () => setIsMenuClosed(!isMenuClosed)
     const changeLanguage = () => i18n.language == 'en' ? i18n.changeLanguage('ptbr')  :  i18n.changeLanguage('en')
 
     return (
         <LeftMenuBarDiv
         data-testid='left-menu-bar'
-        $leftMenuWidth = {isMenuClosed ?  menuClosedWidth : '200px'}
+        $leftMenuWidth = {isLeftMenuClosed ?  menuClosedWidth : '250px'}
         $themeColor={Colors.themeColor01}
         $svgDefaultColor={isDark ? Colors.darkFontColor : Colors.lightFontColor}
         >   
 
             {showsBurguerMenu &&
                 <BurguerMenu
-                    fction={handleMenuButton}
-                    isMenuClosed={isMenuClosed}
+                    fction={handleBurguerMenuFunction}
+                    isMenuClosed={isLeftMenuClosed}
                 />
             }
         

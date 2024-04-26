@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react"
+import { ReactNode, useState, useEffect } from "react"
 import { LayoutDiv } from "./layout.style"
 import LeftMenuBar from './leftMenuBar'
 import RightMenuBar from './rightMenuBar'
@@ -11,21 +11,36 @@ type props = {
 
 export const Layout = ({children}: props) => {
     const [isLeftMenuClosed, setIsLeftMenuClosed] = useState<boolean>(true)
-    const [isRightMenuClosedInMobile, setIsRightMenuClosedInMobile] = useState<boolean>(true)
+    const [isRightMenuClosed, setIsRightMenuClosed] = useState<boolean>(true)
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 800) setIsRightMenuClosed(false)
+            else setIsRightMenuClosed(true)
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handleBurguerMenuClick = () => {
         setIsLeftMenuClosed(!isLeftMenuClosed)
-        setIsRightMenuClosedInMobile(true)
+        setIsRightMenuClosed(true)
     }
 
     const handleShareIconClick = () => {
-        setIsRightMenuClosedInMobile(!isRightMenuClosedInMobile)
+        setIsRightMenuClosed(!isRightMenuClosed)
         setIsLeftMenuClosed(true)
     }
 
     const handleHomeButtonClick = () => {
         setIsLeftMenuClosed(true)
-        setIsRightMenuClosedInMobile(true)
+        setIsRightMenuClosed(true)
     }
 
     return (
@@ -36,11 +51,13 @@ export const Layout = ({children}: props) => {
         shareFunction={handleShareIconClick}
         isMenuClosed={isLeftMenuClosed}/>
         <LayoutDiv>
-            <LeftMenuBar isLeftMenuCloset={isLeftMenuClosed}/>
+            <LeftMenuBar 
+            isLeftMenuClosed={isLeftMenuClosed} 
+            handleBurguerMenuFunction={() => {setIsLeftMenuClosed(!isLeftMenuClosed)}}/>
             <Main>
                 {children}
             </Main>
-            <RightMenuBar isRightMenuClosedInMobile={isRightMenuClosedInMobile}/>
+            <RightMenuBar isRightMenuClosed={isRightMenuClosed}/>
         </LayoutDiv>
         </>
     )

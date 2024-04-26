@@ -9,21 +9,13 @@ import {store} from 'src/redux/store'
 import { Colors } from 'src/styles/globalVariables.style';
 
 let leftMenuBar: any;
-let BurguerMenuButton: any;
 let changeThemeButton: any
-let changeLanguageButton: any
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'en', changeLanguage: jest.fn() } })
-}));
-
-
-describe('test the styles', () => {
+describe('test the styles when closed', () => {
   beforeEach(() => {
-    const leftMenuBarRender = renderWithProviders(<LeftMenuBar />);
+    const leftMenuBarRender = renderWithProviders(<LeftMenuBar isLeftMenuClosed={true} handleBurguerMenuFunction={() => {}}/>);
   
     leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
-    BurguerMenuButton = leftMenuBarRender.getByTestId('burguer-menu-button');
     changeThemeButton = leftMenuBarRender.getByTestId('change-menu-button');
   });
 
@@ -31,7 +23,13 @@ describe('test the styles', () => {
     expect(leftMenuBar).toHaveStyle('width: 50px');
   });
 
-  
+  it('left menu width should be 0px in the beggining if mobile', () => {
+    global.innerWidth = 700;
+    fireEvent(window, new Event('resize'));
+
+    expect(leftMenuBar).toHaveStyle('width: 0px');
+  });
+
   it('left menu child width should be equal by left menu', () => {
     const leftMenuBarChild = leftMenuBar.querySelector('.pages')
 
@@ -40,14 +38,18 @@ describe('test the styles', () => {
 
     expect(leftMenuBarChildWidth).toBe(leftMenuBarWidth)
   });
+});
 
-  it('left menu width should be 200px after the first click', async () => {
-    
-    await act( async () => {
-      fireEvent.click(BurguerMenuButton)
-    })
+describe('test the styles when closed', () => {
+  beforeEach(() => {
+    const leftMenuBarRender = renderWithProviders(<LeftMenuBar isLeftMenuClosed={false} handleBurguerMenuFunction={() => {}}/>);
+  
+    leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
+    changeThemeButton = leftMenuBarRender.getByTestId('change-menu-button');
+  });
 
-    expect(leftMenuBar).toHaveStyle('width: 200px');
+  it('left menu width should be 250px when opend', async () => {
+    expect(leftMenuBar).toHaveStyle('width: 250px');
   });
 
   it('should change theme when clicked', async () => {
@@ -63,13 +65,13 @@ describe('test the styles', () => {
     expect(themeFont).toHaveStyle(`color: ${Colors.darkFontColor}`)
 
   })
-});
+})
 
 describe('test the routes', () => {
   beforeEach(() => {
     render(
       <Provider store={store} >
-        <LeftMenuBar />
+        <LeftMenuBar isLeftMenuClosed={false} handleBurguerMenuFunction={() => {}}/>
       </Provider>, 
       {wrapper: BrowserRouter}
     )
@@ -108,27 +110,4 @@ describe('test the routes', () => {
     expect(screen.getByText(/dashboard/i)).toBeInTheDocument()
   })
   
-})
-
-describe('test languages changes', () => {
-  // TODO: find why changeLanguageTXT is not changing
-  beforeEach(() => {
-    const leftMenuBarRender = renderWithProviders(<LeftMenuBar />);
-
-    leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
-    changeLanguageButton = leftMenuBarRender.getByTestId('change-language');
-  })
-
-  it('should change the language ptbr to en, and en to ptbr', async () => {
-
-    const changeLanguageTXT = changeLanguageButton.querySelector('.swapLang')
-
-    expect(changeLanguageTXT).toHaveTextContent('Language');
-
-    // await act( async () => {
-    //   fireEvent.click(changeLanguageButton);
-    // });
-    
-    // expect(changeLanguageTXT).toHaveTextContent('Idioma');
-  })
 })

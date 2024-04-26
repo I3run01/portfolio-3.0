@@ -30,7 +30,7 @@ describe('test top menubar', () => {
 
     })
 
-    expect(leftMenuBar).toHaveStyle('width: 200px;')
+    expect(leftMenuBar).toHaveStyle('width: 250px;')
 
   });
 
@@ -42,7 +42,7 @@ describe('test top menubar', () => {
 
     })
 
-    expect(leftMenuBar).toHaveStyle('width: 200px;')
+    expect(leftMenuBar).toHaveStyle('width: 250px;')
 
     act(() => {
       fireEvent.click(shareMenuButton);
@@ -67,7 +67,7 @@ describe('test top menubar', () => {
       fireEvent.click(burguerMenuButton);
     })
 
-    expect(leftMenuBar).toHaveStyle('width: 200px;')
+    expect(leftMenuBar).toHaveStyle('width: 250px;')
 
     act(() => {
       fireEvent.click(homeMenuButton);

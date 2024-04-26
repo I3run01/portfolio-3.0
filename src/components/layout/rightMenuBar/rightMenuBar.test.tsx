@@ -10,7 +10,7 @@ describe('test the routes' , () => {
     let cvsButton: HTMLElement
 
     beforeEach(() => {
-        rightMenuBarRender = renderWithProviders(<RightMenuBar isRightMenuClosedInMobile={false} /> );
+        rightMenuBarRender = renderWithProviders(<RightMenuBar isRightMenuClosed={false} /> );
         whatsappButton = rightMenuBarRender.getByTestId('whatsapp-button');
         linkedinButton = rightMenuBarRender.getByTestId('linkedin-button');
         gitHubButton = rightMenuBarRender.getByTestId('github-button');
