@@ -20,34 +20,34 @@ export const Fonts = {
     font-family: 'Dosis', sans-serif;
     font-size: 48px;
     font-weight: bold;
-    color: ${props => props.$fontColor}
+    color: ${props => props.$fontColor};
   `,
 
   Title02: styled.h2<Props>`
     font-family: 'Dosis', sans-serif;
     font-size: 36px;
     font-weight: bold;
-    color: ${props => props.$fontColor}
+    color: ${props => props.$fontColor};
   `,
 
   Title03: styled.h3<Props>`
     font-family: 'Dosis', sans-serif;
     font-size: 24px;
     font-weight: bold;
-    color: ${props => props.$fontColor}
+    color: ${props => props.$fontColor};
   `,
 
   DesktopParagraph: styled.p<Props>`
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: normal;
-    color: ${props => props.$fontColor}
+    color: ${props => props.$fontColor};
   `,
 
   MobileParagraph: styled.p<Props>`
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
-    color: ${props => props.$fontColor}
+    color: ${props => props.$fontColor};
   `,
 };
 

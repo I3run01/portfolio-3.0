@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "src/styles/globalVariables.style";
+import { maxMobileWidthString } from "src/utils/constants/maxMobileWidth";
 
 type props = {
     $fontColor: string
@@ -41,7 +42,7 @@ export const RightMenuBarDiv = styled.div<props>`
         }
     }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: ${maxMobileWidthString}) {
         width: ${props => props.$width};
         position: fixed;
         right: 0;

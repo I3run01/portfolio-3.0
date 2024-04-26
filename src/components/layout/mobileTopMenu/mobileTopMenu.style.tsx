@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "src/styles/globalVariables.style";
+import { maxMobileWidthString } from "src/utils/constants/maxMobileWidth";
 
 type props = {
     $svgColor: string
@@ -32,7 +33,7 @@ export const MobileTopMenuDiv = styled.div<props>`
         }
     }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: ${maxMobileWidthString}) {
         display: flex;
         justify-content: space-around;
 

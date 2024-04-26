@@ -4,6 +4,7 @@ import LeftMenuBar from './leftMenuBar'
 import RightMenuBar from './rightMenuBar'
 import { MobileTopMenu } from "./mobileTopMenu"
 import { Main } from "./main"
+import { maxMobileWidthNum } from "src/utils/constants/maxMobileWidth"
 
 type props = {
     children: ReactNode
@@ -15,7 +16,7 @@ export const Layout = ({children}: props) => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 800) setIsRightMenuClosed(false)
+            if (window.innerWidth >= maxMobileWidthNum) setIsRightMenuClosed(false)
             else setIsRightMenuClosed(true)
         };
 

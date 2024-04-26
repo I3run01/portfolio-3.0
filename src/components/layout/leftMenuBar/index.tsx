@@ -10,6 +10,7 @@ import { changeTheme } from "src/redux/slice/themeSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { maxMobileWidthNum } from "src/utils/constants/maxMobileWidth";
 
 type props = {
     isLeftMenuClosed: boolean
@@ -27,7 +28,7 @@ const LeftMenuBar = ({isLeftMenuClosed, handleBurguerMenuFunction}: props) => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 800) {
+            if (window.innerWidth < maxMobileWidthNum) {
                 setShowsBurguesMenu(false);
                 setMenuClosetWidth('0px')
             } else {

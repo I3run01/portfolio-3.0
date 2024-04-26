@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { maxMobileWidthString } from "src/utils/constants/maxMobileWidth";
 
 export const LayoutDiv = styled.div`
     display: flex;
@@ -7,7 +8,7 @@ export const LayoutDiv = styled.div`
 
     height: 100%;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: ${maxMobileWidthString}) {
         height: calc(100% - 40px);
     }
 

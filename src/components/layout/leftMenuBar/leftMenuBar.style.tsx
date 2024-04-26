@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { maxMobileWidthString } from "src/utils/constants/maxMobileWidth";
 
 type props = {
     $leftMenuWidth: string
@@ -55,7 +56,7 @@ export const LeftMenuBarDiv = styled.div<props>`
         
     }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: ${maxMobileWidthString}) {
         position: fixed;
         left: 0;
 
