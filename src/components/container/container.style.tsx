@@ -12,7 +12,7 @@ export const ContainerMain = styled.main`
 
     h1, h2, h3 {
         padding-top: 20px;
-        padding-bottom: 60px;
+        padding-bottom: 20px;
 
         @media screen and (max-width: ${maxMobileWidthString}) {
             padding-top: 10px;
