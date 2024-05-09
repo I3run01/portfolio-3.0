@@ -13,10 +13,14 @@ let changeThemeButton: any
 
 describe('test the styles when closed', () => {
   beforeEach(() => {
+    
     const leftMenuBarRender = renderWithProviders(<LeftMenuBar isLeftMenuClosed={true} handleBurguerMenuFunction={() => {}}/>);
   
     leftMenuBar = leftMenuBarRender.getByTestId('left-menu-bar');
     changeThemeButton = leftMenuBarRender.getByTestId('change-menu-button');
+
+    global.innerWidth = 1980;
+    fireEvent(window, new Event('resize'));
   });
 
   it('left menu width should be 50px in the beggining', () => {

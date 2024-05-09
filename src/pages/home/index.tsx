@@ -1,16 +1,14 @@
-// import { Cape } from "./cape"
-import { useTranslation } from 'react-i18next';
-
-
+import { Cape } from "./cape"
+import { About } from "./about"
+ 
 const Home = () => {
-    const { t } = useTranslation();
 
     return (
         <>
-            {/* <Cape/> */}
-            <h1>{t('Home')}</h1>
+            <Cape />
+            <About />
         </>
-    )
+    ) 
 }
 
 export default Home

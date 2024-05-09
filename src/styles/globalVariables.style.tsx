@@ -1,3 +1,4 @@
+import { maxMobileWidthString } from "src/utils/constants/maxMobileWidth";
 import styled from "styled-components";
 
 type Props =  {
@@ -21,6 +22,10 @@ export const Fonts = {
     font-size: 48px;
     font-weight: bold;
     color: ${props => props.$fontColor};
+
+    @media screen and (max-width: ${maxMobileWidthString}){
+      font-size: 36px;
+    }
   `,
 
   Title02: styled.h2<Props>`
@@ -28,6 +33,10 @@ export const Fonts = {
     font-size: 36px;
     font-weight: bold;
     color: ${props => props.$fontColor};
+
+    @media screen and (max-width: ${maxMobileWidthString}){
+      font-size: 24px;
+    }
   `,
 
   Title03: styled.h3<Props>`
@@ -35,19 +44,21 @@ export const Fonts = {
     font-size: 24px;
     font-weight: bold;
     color: ${props => props.$fontColor};
+
+    @media screen and (max-width: ${maxMobileWidthString}){
+      font-size: 16px;
+    }
   `,
 
-  DesktopParagraph: styled.p<Props>`
+  Paragraph: styled.p<Props>`
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: normal;
     color: ${props => props.$fontColor};
-  `,
 
-  MobileParagraph: styled.p<Props>`
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    color: ${props => props.$fontColor};
+    @media screen and (max-width: ${maxMobileWidthString}){
+      font-size: 16px;
+    }
   `,
 };
 

@@ -5,7 +5,6 @@ type props = {
     children: ReactNode
 }
 
-
 export const Main = ({children}:props) => {
     return (
         <MainLayout>

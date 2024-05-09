@@ -66,37 +66,37 @@ const LeftMenuBar = ({isLeftMenuClosed, handleBurguerMenuFunction}: props) => {
             <div className="pages">
                 <div onClick={() => navigate('')}>
                     <SvgIcons.HomeIcon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
+                    <Fonts.Paragraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
                         {t('Home')}
-                    </Fonts.DesktopParagraph>
+                    </Fonts.Paragraph>
                 </div>
                 <div onClick={() => navigate('tech')}>
                     <SvgIcons.TechIcon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
+                    <Fonts.Paragraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
                         {t('Tech')}
-                    </Fonts.DesktopParagraph>
+                    </Fonts.Paragraph>
                 </div>
             </div>
 
             <div className="settings">
                 <div onClick={changeLanguage} data-testid="change-language">
                     <SvgIcons.LanguageIcon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor} className="swapLang">
+                    <Fonts.Paragraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor} className="swapLang">
                         {t('Language')}
-                    </Fonts.DesktopParagraph>
+                    </Fonts.Paragraph>
                 </div>
                 <div onClick={() => dispatch(changeTheme())} data-testid="change-menu-button">
                     <SvgIcons.ThemeICon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor} className="ThemeButton">
+                    <Fonts.Paragraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor} className="ThemeButton">
                         {t('Theme')}
-                    </Fonts.DesktopParagraph>
+                    </Fonts.Paragraph>
                 </div>
 
                 <div onClick={() => navigate('dashboard')}>
                     <SvgIcons.DashboardIcon/>
-                    <Fonts.DesktopParagraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
+                    <Fonts.Paragraph $fontColor = {isDark ? Colors.darkFontColor : Colors.lightFontColor}>
                         {t('Dashboard')}
-                    </Fonts.DesktopParagraph>
+                    </Fonts.Paragraph>
                 </div>
             </div>
         </LeftMenuBarDiv>

@@ -12,6 +12,7 @@ export const LeftMenuBarDiv = styled.div<props>`
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.4px);
     -webkit-backdrop-filter: blur(7.4px);
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
